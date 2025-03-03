@@ -66,7 +66,11 @@ async function getOTP(email) {
 }
 
 async function registerOyaChat(email, referralCode) {
-    const browser = await puppeteer.launch({ headless: true });
+    const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+});
+
     const page = await browser.newPage();
     const userAgent = randomUseragent.getRandom();
     await page.setUserAgent(userAgent);
