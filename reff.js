@@ -75,19 +75,20 @@ async function registerOyaChat(email, referralCode) {
     const userAgent = randomUseragent.getRandom();
     await page.setUserAgent(userAgent);
     await page.goto(`https://oyachat.com/?referral_code=${referralCode}`, { waitUntil: 'networkidle2' });
+    await delay(2000);
 
     await page.waitForSelector('#__next > div > div > button', { timeout: 15000 });
     await page.click('#__next > div > div > button');
-    await delay(1000);
+    await delay(2000);
 
     await page.waitForSelector('#email-input', { timeout: 15000 });
     await page.type('#email-input', email);
-    await delay(1000);
+    await delay(2000);
 
     await page.waitForSelector('#privy-modal-content > div > div.sc-bmzYkS.tmqqB > div.sc-fHjqPf.hoTooY > div > div:nth-child(1) > div > label > button > span:nth-child(1)', { timeout: 15000 });
     await page.click('#privy-modal-content > div > div.sc-bmzYkS.tmqqB > div.sc-fHjqPf.hoTooY > div > div:nth-child(1) > div > label > button > span:nth-child(1)');
     console.log(`📨 Mendaftar OyaChat dengan email: ${email}`);
-    await delay(1000);
+    await delay(2000);
 
     const otp = await getOTP(email);
     if (!otp) {
@@ -105,7 +106,7 @@ async function registerOyaChat(email, referralCode) {
 
     await page.waitForSelector('#privy-modal-content > div > div.sc-bmzYkS.tmqqB > div.sc-uVWWZ.cQAmLB > button.sc-kpDqfm.sc-jlZhew.dSHGLK.inTmNp', { timeout: 15000 });
     await page.click('#privy-modal-content > div > div.sc-bmzYkS.tmqqB > div.sc-uVWWZ.cQAmLB > button.sc-kpDqfm.sc-jlZhew.dSHGLK.inTmNp');
-    await delay(1000);
+    await delay(2000);
 
     console.log("🎉 Pendaftaran berhasil!");
     await delay(2000);
